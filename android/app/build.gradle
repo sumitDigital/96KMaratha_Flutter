@@ -1,0 +1,92 @@
+plugins {
+    id "com.android.application"
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.firebase-perf'
+    id 'com.google.firebase.crashlytics'
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
+if (flutterVersionCode == null) {
+    flutterVersionCode = "1"
+}
+
+def flutterVersionName = localProperties.getProperty("flutter.versionName")
+if (flutterVersionName == null) {
+    flutterVersionName = "1.0"
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace = "com.example._96kuliapp"
+    compileSdk = 35
+    ndkVersion = "25.1.8937393"
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.marriage.maratha" /* "com.matrimony.jain" */
+        minSdk = 21
+        targetSdk = 35
+        versionCode = 100 /* flutterVersionCode */
+        versionName = '1.21'
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            keyAlias = keystoreProperties['keyAlias']
+            keyPassword = keystoreProperties['keyPassword']
+            storeFile = keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword = keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        // debug {/*  */
+        // buildConfigField 'boolean', 'UPDATE_ENABLED', 'false'
+    // }/*  */
+    
+        release {
+        //   /*   */ buildConfigField 'boolean', 'UPDATE_ENABLED', 'true'/*  */
+            minifyEnabled true
+            shrinkResources true
+            signingConfig = signingConfigs.debug
+            signingConfig = signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    // buildFeatures { /*  */
+        // buildConfig true
+    // }/*  */
+}
+
+dependencies {
+  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2' 
+}
+
+flutter {
+    source = "../.."
+}

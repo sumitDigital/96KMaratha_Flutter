@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Base href for serving the web app -->
+    <base href="/">
+
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="description" content="A new Flutter project.">
+
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="96 Kuli Maratha Marriage">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <!-- Add cropperjs library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <title>96 Kuli Maratha Marriage</title>
+    <link rel="manifest" href="manifest.json">
+    <!-- Firebase Analytics --> 
+    <script defer src="/__/firebase/10.7.0/firebase-app.js"></script>
+    <script defer src="/__/firebase/10.7.0/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    
+
+    <!-- Firebase Configuration -->
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+        const firebaseConfig = { apiKey: "AIzaSyDyDCv3b_XF0izW4yYtKn2wnaf681ZLoKs",
+        authDomain: "jain-matrimony-buray.firebaseapp.com",
+         databaseURL: "https://jain-matrimony-buray-default-rtdb.firebaseio.com",
+          projectId: "jain-matrimony-buray", storageBucket: "jain-matrimony-buray.firebasestorage.app", messagingSenderId: "372363288591",
+        appId: "1:372363288591:web:8affe89e6392135564c37a", measurementId: "G-7LL501K6G9" };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+    <!-- Facebook Events Configuration -->
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1213006653093690', // Replace with your Facebook App ID
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v18.0'
+          });
+          console.log("✅ Facebook SDK Initialized");
+        };
+      
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+      
+   <!-- Facebook Pixel Code -->
+   <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  
+    fbq('init', '1476400143027283'); // Replace with your Facebook Pixel ID
+    fbq('track', 'PageView'); // Track page views automatically
+  
+    function fbTrackEvent(eventName, params = {}, isCustom = false) {
+      if (!eventName || typeof eventName !== "string") {
+        console.error("Facebook Pixel Error: Event name is required and must be a string.");
+        return;
+      }
+  
+ //     console.log("🚀 Attempting to log event:", eventName, params, "isCustom:", isCustom);
+  
+      if (isCustom) {
+        fbq('trackCustom', eventName, params);
+      console.log("✅ Facebook Event Custom Logged:", eventName);
+
+      } else {
+      console.log("✅ Facebook Event not Custom Logged:", eventName);
+
+        fbq('track', eventName, params);
+      }
+  
+     // console.log("✅ Facebook Event Logged:", eventName);
+    }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TT6V5VHR');
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+
+    function checkGTMReady() {
+      if (window.dataLayer && window.dataLayer.push) {
+        console.log("✅ GTM is initialized.");
+        window.GTM_READY = true; // Set a flag to indicate GTM is ready
+      } else {
+        console.log("⏳ Waiting for GTM...");
+        setTimeout(checkGTMReady, 500); // Retry every 500ms
+      }
+    }
+
+    checkGTMReady(); // Start checking if GTM is initialized
+  </script>
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TT6V5VHR"></script>
+    <script>
+        function storeTokenFromURL() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // Get the token from ?token= in the URL
+            const token = urlParams.get('token');
+            const route = urlParams.get('route');
+            if (token) {
+                // Store token in localStorage
+                localStorage.setItem('token', token);
+                localStorage.setItem('route', route);
+                console.log('Token stored:', token);
+                alert('Token is set: ' + localStorage.getItem('token')); // Show alert
+
+                urlParams.delete('token');
+                urlParams.delete('route');
+                const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+                history.replaceState(null, "", newUrl);
+            } else {
+                console.warn('No token found in the URL.');
+            }
+        }
+
+        // Call the function on page load
+        storeTokenFromURL();
+    </script>
+</head>
+
+<body>
+    <script src="flutter_bootstrap.js" async></script>
+</body>
+
+</html>
